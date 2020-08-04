@@ -9,7 +9,7 @@ router.post("/", (req, res) => {
 
   const { username, email, password, confirmPassword } = req.body;
   // ADD VALIDATION
-  if (!username || !email || !password || !confirmPassword) {
+  if (!username || !email || !password || !confirmPassword) { //more nonsense error handling
     res.json({ error: { msg: "Please fill in the entire form" } });
   } else if (password !== confirmPassword) {
     res.json({ error: { msg: "Passwords do not match" } });
@@ -52,7 +52,7 @@ router.post("/", (req, res) => {
 });
 
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (e, user, info) => {
+  passport.authenticate("local", (e, user, info) => { //passport authentication
     if (info) {
       console.log(`Error: ${info.message}`);
       let error = { msg: info.message };
