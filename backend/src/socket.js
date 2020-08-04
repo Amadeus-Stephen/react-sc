@@ -10,12 +10,12 @@ io.on("connection", (socket) => {
   console.log(` passport id :${passportId}`);
   console.log(` socket id :${id}`);
   socket.on("getProjects", () => {
-    Project.find({}, { id: true, name: true }).then((data) => {
+    Project.find({}, { id: true, name: true }).then((data) => { //basically here so the left side nav bar is always up to date
       io.sockets.in("Home").emit("getProjects", data);
     });
   });
 
-  socket.on("getProjectData", (data) => {
+  socket.on("getProjectData", (data) => { // my way of not having to use url params in a get request
     if (!passportId) {
       io.to(id).emit("getProjectData", {
         error: { msg: "You need to sign in to use that feature" },
