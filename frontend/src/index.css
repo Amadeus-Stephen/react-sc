@@ -1,0 +1,128 @@
+.false {
+  display: none;
+}
+.overlay {
+  display: none;
+}
+.overlay.is-nav-active {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  cursor: pointer;
+}
+
+.leftnav {
+  width: 0;
+  transition: all ease-in-out 200ms;
+  visibility: hidden;
+  height: 100vh;
+  position: fixed;
+}
+
+.leftnav.is-nav-active {
+  width: 50vh;
+  height: 100vh;
+  position: fixed;
+  transition: all ease-in-out 200ms;
+  visibility: inherit;
+}
+
+.leftnav > * {
+  display: none;
+}
+.leftnav.is-nav-active > * {
+  display: inherit;
+}
+.topnav {
+  width: 100vh;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+}
+
+.csnav {
+  z-index: 4;
+}
+.csnav-btn {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.csnavBox {
+  word-wrap: break-word;
+  overflow-y: scroll;
+  right: 0;
+  z-index: 3;
+  max-height: 28vh;
+}
+.csnavBox::-webkit-scrollbar-track {
+  background: black;
+}
+.csnavBox::-webkit-scrollbar-thumb {
+  background: #c67734;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border: 0.25rem #c67734;
+  border-radius: 1rem;
+}
+.csnavBox::-webkit-scrollbar {
+  margin-left: 1rem;
+  width: 0.5rem;
+}
+.cspage {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 90% !important;
+}
+
+.input-group {
+  align-items: center;
+}
+.settingsOpt {
+  display: flex;
+  justify-content: space-between;
+}
+.dialog {
+  display: flex;
+  width: 40rem;
+  height: 20rem;
+  margin: 0 auto;
+  padding: 1rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  flex-direction: column;
+  z-index: 4;
+}
+
+.dialogBtn {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  font-weight: bold;
+  align-self: flex-end;
+}
+.dialogText {
+  display: flex;
+  margin: auto;
+}
+.dialogOptions {
+  display: flex;
+  bottom: 0;
+}
