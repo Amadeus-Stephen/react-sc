@@ -6,7 +6,7 @@ const User = require("../database/models/user");
 router.post("/create", (req, res) => {
   let errors = [];
   const { name, tasks } = req.body;
-  if (!req.session.passport.user || !name || !tasks.length > 0) {
+  if (!req.session.passport.user || !name || !tasks.length > 0) { //crazy balls error checking 
     if (!req.session.passport.user) {
       errors.push({ msg: "You need to sign in to use this feature" });
     }
@@ -22,7 +22,7 @@ router.post("/create", (req, res) => {
   } else {
     console.log("hello");
     User.findById(req.session.passport.user, {
-      username: true,
+      username: true, //only graps the username field from the User model
     }).then((data) => {
       try {
         let username = data.username;
@@ -30,25 +30,25 @@ router.post("/create", (req, res) => {
         let owner = { username, id };
         Project.findOne({ name, owner }).then((project) => {
           if (project) {
-            errors.push({ msg: "you already have a project with that name" });
+            errors.push({ msg: "you already have a project with that name" });// more garbage error checking
             res.json({ errors });
           } else {
             console.log("open");
             let project = new Project({ owner, name, tasks });
-            project.save();
+            project.save(); //save the new Project to the database
             res.json({ success: "new project created" });
           }
         });
       } catch (err) {
         console.log(err);
-        res.json("failed to fetch user");
+        res.json("failed to fetch user"); // this probably doesnt need to be here i just like try - catch statements
       }
     });
   }
 });
 
-router.get("/:id", (req, res) => {
-  try {
+router.get("/:id", (req, res) => { //this was in the actual application this was replaace with a socket method 
+  try {                             // keep it open for api testing
     if (!req.session.passport.user) {
       res.json({ error: { msg: "You need to sign in to use this feature" } });
     }
@@ -66,8 +66,8 @@ router.get("/:id", (req, res) => {
     res.json({ error: { msg: "could not get user" } });
   }
 });
-router.post("/update", (req, res) => {
-  Project.findByIdAndUpdate(
+router.post("/update", (req, res) => { // updates project with the new changes made 
+  Project.findByIdAndUpdate(           // this could easily be replaced by socket methods but i didnt feel like making them
     req.body.id,
     req.body.project,
     { new: true },
@@ -81,7 +81,7 @@ router.post("/update", (req, res) => {
   );
 });
 
-router.post("/delete", (req, res) => {
+router.post("/delete", (req, res) => { // DELETE DELETE DELETE DELETE DELETE DELETE DELETE
   console.log(req.body);
   if (!req.session.passport.user) {
     res.json({ error: { msg: "You need to sign in to use this feature" } });
