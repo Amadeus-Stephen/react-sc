@@ -1,3 +1,7 @@
+i would TOTALLY add more comments to the frontend but i really cannot be bother to 
+sorry to future me and who ever comes across the dumpster fire
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
